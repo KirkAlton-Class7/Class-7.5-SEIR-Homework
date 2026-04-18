@@ -106,7 +106,7 @@ override.tf.json
 .terraform.tfstate.lock.info
 
 # Terraform plan outputs (binary, environment-specific)
-*tfplan*
+*.tfplan
 
 # Terraform CLI configuration files
 .terraformrc
