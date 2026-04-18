@@ -1,17 +1,7 @@
 # ----------------------------------------------------------------
 # SUBNETS
 # ----------------------------------------------------------------
-
-# Go to:
-# VPC Network → Subnets
-# Confirm:
-
-#    subnet exists
-#    secondary ranges visible
-
-# IMPORTANT:
 # CIDR ranges MUST NOT overlap
-# Do not modify unless you understand subnetting
 
 # ----------------------------------------------------------------
 # SUBNETS - VM SUBNETS
