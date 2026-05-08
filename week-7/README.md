@@ -265,7 +265,7 @@ If successful, Terraform should return a deployment success message with outputs
 ![Picture of VPC resource in GCP console](./assets/vpc_in_gcp_console.png) 
 
 
-### Confirm Creation of `rendered` Directory and `favorite-food.txt`
+### Confirm Creation of `rendered` Directory and `favorite-food.txt` File
 
 Run the following commands to confirm that the  `rendered` directory was created:
 
@@ -277,7 +277,7 @@ Confirm the `rendered` directory was created.
 
 ![Picture of `rendered` directory in command line](./assets/rendered_directory_success.png)
 
-If the directory doesn't exist, double check your current path and review the `filename` argument for the `"favorite_food"` resource in  `02-local-files.tf`. Fix any issues before proceeding.
+If the directory doesn't exist, double check your current path and review the `filename` argument for the `"local_file.favorite_food"` resource in  `02-local-files.tf`. Fix any issues before proceeding.
 
 Naviagate to the `rendered` directory and confirm that a file named `favorite-food.txt` was created.
 
@@ -288,7 +288,23 @@ ls
 
 ![Picture of `favorite-food.txt` file in command line](./assets/favorite_food_file_success.png)
 
-If the file doesn't exist, double check your current path and review the `filename` argument for the `"favorite_food"` resource in  `02-local-files.tf`.
+If the file doesn't exist, double check your current path and review the `filename` argument for the `"local_file.favorite_food"` resource in  `02-local-files.tf`.
+
+### Confirm Contents of the `favorite-food.txt` File
+
+Run the following commands to confirm that the contents of the `favorite-food.txt` file are correct.
+
+Show contents of the `favorite-food.txt` file.
+
+```bash
+cat rendered/favorite-food.txt
+```
+
+Compare the results to the value of the `content` argument in the `local_file.favorite_food` resource in  `02-local-files.tf`.
+
+If successful, the contents of `favorite-food.txt` will match the value of `content`
+
+![Pictrue of successful content match](./assets/successful_content_match.png)
 
 ---
 
@@ -299,6 +315,7 @@ If the file doesn't exist, double check your current path and review the `filena
 Run `terraform destroy` to remove all resources created by this lab. When prompted, type `yes` to confirm destruction.
 
 If successful, Terraform should return a destruction success message.
+
 
 ![Pictrue of `terraform destroy` results](./assets/terraform_destroy.png)
 
