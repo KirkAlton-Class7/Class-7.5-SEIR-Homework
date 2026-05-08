@@ -223,6 +223,8 @@ Your file configuration should be similar to this:
 
 Review the [Terraform output block reference documentation](https://developer.hashicorp.com/terraform/language/block/output) for information about how to use `output` blocks in Terraform.
 
+
+
 ![Pictrue of Output Block Reference Documentation](./assets/output_block_reference_doc.png)
 
 ### 7.2 Develop the `output` Resource Block
