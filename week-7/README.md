@@ -369,5 +369,5 @@ If successful, Terraform should return a destruction success message.
 * [Terraform - Google Documentation: google_compute_network](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_network)
 * [Terraform - Local Documentation: local_file (Resource)](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file)
 * [Terraform - Output Block Reference](https://developer.hashicorp.com/terraform/language/block/output)
-* [Terraform Style Guide](https://developer.hashicorp.com/terraform/language/style#code-formatting)
+* [Terraform Style Guide](https://developer.hashicorp.com/terraform/language/style)
 * [Terraform fmt Command](https://developer.hashicorp.com/terraform/cli/commands/fmt)
