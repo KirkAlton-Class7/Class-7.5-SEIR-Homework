@@ -1,22 +1,22 @@
 # Deplying a Basic VPC and Local File with Terraform
 
-## Set Up Terraform Project
+## 1. Set Up Terraform Project
 
 In the terminal, navigate to your working path and run the following commands:
 
-### Create Project Directory
+### 1.1 Create Project Directory
 
 ```bash
 mkdir week-7 && cd week-7
 ```
 
-### Create Terraform Subdirectory
+### 1.2 Create Terraform Subdirectory
 
 ```bash
 mkdirk terraform && cd terraform
 ```
 
-### Create Project Files
+### 1.3 Create Project Files
 
 ```bash
 touch 00-authentication.tf \
@@ -25,7 +25,7 @@ touch 00-authentication.tf \
 	03-outputs.tf
 ```
 
-### Initialize Terraform
+### 1.4 Initialize Terraform
 
 Initialize terraform by running:
 
@@ -35,7 +35,7 @@ terraform init
 
 ---
 
-## Open the Project in VS Code
+## 2. Open the Project in VS Code
 
 From the terraform subdirectory, run:
 
@@ -45,34 +45,40 @@ code .
 
 ---
 
-## Find Necessary Terraform Documentation
+## 3. Gather Necessary Terraform Documentation
 
-Go to <https://registry.terraform.io/> and retrieve documentation for the most recent versions of the Google and Local providers. <br></br>
+### 3.1 Access the Terraform Registry
+Go to <https://registry.terraform.io/> to access the main page of the Terraform registry.<br></br>
 ![Pictrue of Terraform registry web page](./assets/terraform_registry.png)
 
 Click "Browse Providers"
 ![Pictrue of Terraform registry browse view](./assets/terraform_providers.png)
 
 > ![TIP]<br>
-> You can navigate the Terraform registry by clicking "Browse Providers." From there, you can filter providers or search as needed.
+> On the Proivders page, you can filter providers or search as needed.
 
 
-Open each provider's documentation in a new tab:
+### 3.2 Retrieve Documentation for the Most Recent Versions of the Required Providers
+
+#### 3.2.a Google Provider
+Open the provider documentation in a new tab:
 - Google( Google Cloud Platform, by Hashicorp)
   - ![Pictrue of Google provider web page](./assets/google_provider.png)
 
+#### 3.2.b Local Provider
+Open the provider documentation in a new tab:
 - Local (Local, by Hashicorp)
   - ![Pictrue of Local provider web page](./assets/local_provider.png)
 
 ---
 
-## Develop Terraform Code for the Project
+## 4. Develop Terraform Code for the Project
 
 Use the Terraform provider documentation and follow the steps below to develop Terraform code for the project
 
-### Add Required Providers in `00-authentication.tf`
+### 4.1 Add Required Providers in `00-authentication.tf`
 
-#### Google Terraform Provider
+#### 4.1.a Google Terraform Provider
 
 Open the Google Terraform provider and click the "USE PROVIDER" dropdown.
 
@@ -105,7 +111,7 @@ Example Google provider configuration
   region  = "us-central1"
 ```
 
-#### Hashicorp Local Provider
+#### 4.1.b Hashicorp Local Provider
 
 Open the Hashicorp Local provider and click the "USE PROVIDER" dropdown.
 
@@ -119,7 +125,7 @@ Copy only the `local = {}` argument and add it the `required providers` block
       version = "2.8.0"
 ```
 
-### Review `00-authentication.tf`
+### 4.2 Review `00-authentication.tf`
 
 Your file configuration should be similar to this:
 ![Pictrue of 00-authentication.tf in VS code](./assets/00_authentication_vs_code.png) 
@@ -127,15 +133,17 @@ Your file configuration should be similar to this:
 >![TIP]<br>
 > Run `terraform validate` to check your configuration. If there are any errors, fix them before proceeding.
 
-### Add VPC Resource in `01-vpc.tf`
+## 5. Add the VPC Resource in `01-vpc.tf`
+
+### 5.1 Find `google_compute_network` in the Google provider documentation
 
 In the Google Cloud Cloud provider documentation, search for `google_compute_network` and click the `google_compute_network` resource to view documentation for the resource.
 
 ![Pictrue of Search Result for Google Computer Network](./assets/search_results_google_compute_network.png) 
 
+### 5.2 Develop the `google_compute_network` Resource Block
 
-
-Copy the code block for "Example Usage - Network Basic," paste it into VS code, and save the file
+Copy the code block for "Example Usage - Network Basic," paste it into VS code, and save the file.
 
 ```hcl
 resource "google_compute_network" "vpc_network" {
@@ -144,9 +152,12 @@ resource "google_compute_network" "vpc_network" {
 ```
 
 > ![NOTE]<br>
-> Edit the resource name `vpc_network` and the name attribute `vpc-network` as you see fit.
+> Modify the resource name (`vpc_network`) and the value of the `name` attribute (`vpc-network`) as you see fit.
 
-### Review `01-vpc.tf`
+> ![TIP]<br>
+> Be sure to review the [Terraform Style Guide](https://developer.hashicorp.com/terraform/language/style) for information about code formatting, resource naming, referencing resources, and other important conventions.
+
+### 5.3 Review `01-vpc.tf`
 
 Your file configuration should be similar to this:
 ![Pictrue of 01-vpc.tf in VS code](./assets/01_vpc_vs_code.png) 
@@ -154,12 +165,15 @@ Your file configuration should be similar to this:
 >![TIP]<br>
 > Run `terraform validate` to check your configuration. If there are any errors, fix them before proceeding.
 
-### Develop Code for `02-local-files.tf`
+## 6. Add the `favorite_food` Resource in `02-local-files.tf`
+
+### 6.1 Find  `local_file` in the Hashicorp Local provider documentation
 
 In the Hashicorp Local provider documentation, search for `local_file` and click the `local_file` resource to view documentation for the resource.
 
 ![Pictrue of Search Result for Local File](./assets/search_results_local_file.png) 
 
+### 6.2 Develop the `local_file` Resource Block
 
 Copy the code block for "Example Usage" and paste it into VS code.
 
@@ -170,15 +184,14 @@ resource "local_file" "foo" {
 }
 ```
 
-Change the resource name from `"foo"` to `"favorite_food"`.
+Make the following modifications to the resource block:
+- Change the resource name from `"foo"` to `"favorite_food"`.
 
-Change the argument value for `content` from `"foo!"` and updated it with your favorite food. For example, `"lamb rib chops"`
+- Change the value of `content` to your favorite food. For example, `"lamb rib chops"`
 
-In the `filename` argument, change the value to `${path.module}/rendered/favorite-food.txt"`
+- Change the value of `filename` to `${path.module}/rendered/favorite-food.txt"`. This saves the contents of the `local_file` resource to a file called `favorite-food.txt`
 
-This saves the contents of the `local_file` resource to a file called `favorite-food.txt`
-
-### Review `02-local-files.tf`
+### 6.3 Review `02-local-files.tf`
 
 Your file configuration should be similar to this:
 ![Pictrue of 02-local-files.tf in VS code](./assets/02_local_file_vs_code.png) 
@@ -187,26 +200,35 @@ Your file configuration should be similar to this:
 > Run `terraform validate` to check your configuration. If there are any errors, fix them before proceeding.
 
 
-### Develop Code for `03-output.tf`
+## 7. Add Desired Output(s) in `03-output.tf`
 
-An output block reference is needed to produce outputs in Terraform. Use an output block like the one below to output information for the `google_compute_network` VPC resource.
+### 7.1 Review the Output Block Documentation
 
-> ![NOTE]<br>
-> In the `value` argument, change the reference so it matches your VPC resource name. You can find the name.
+>![NOTE]<br>
+>An `output` block reference allows Terraform to expose information about your infrastructure. The `output` block values appear in the UI after Terraform applies your configuration.
+
+Review the [Terraform output block reference documentation](https://developer.hashicorp.com/terraform/language/block/output) for information about how to use `output` blocks in Terraform.
+
+### 7.2 Develop the `output` Resource Block
+
+Copy the "Basic Example" `output` code block from the documentation, and paste it into VS code.
 
 ```hcl
-output "vpc_name" {
-
-description = "Name of the VPC"
-
-value = google_compute_network.network_vpc.name
-
+output "instance_ip_addr" {
+  value       = aws_instance.server.private_ip
+  description = "The private IP address of the main server instance."
 }
+
 ```
+Make the following modifications to the output block:
+- Change the output name from `"instance_ip_addr"` to `"vpc_name"`.
 
-View the Terraform [output block reference documentation](https://developer.hashicorp.com/terraform/language/block/output) for additional information about constructing arguments in output blocks.
+- Set the value of `value` to reference the name of your VPC resource (ex. `google_compute_network.dev_sandbox.name`).
+  - Remember
 
-### Review `03-outputs.tf`
+- Set the value of `description` to `"Name of the VPC"`
+
+### 7.3 Review `03-outputs.tf`
 
 Your file configuration should be similar to this:
 ![Pictrue of 03-outputs.tf in VS code](./assets/03_outputs_vs_code.png) 
@@ -216,7 +238,7 @@ Your file configuration should be similar to this:
 
 ---
 
-## Format all Terraform Files (Optional)
+## 8. Standardize Format for All Terraform Files (Optional)
 
 Run `terraform fmt -recursive` to properly format all files in the project.
 
@@ -228,44 +250,44 @@ Example Results
 
 ---
 
-## Run the Terraform Deployment Process
+## 9. Run the Terraform Deployment Process
 
-### Terraform Validate
+### 9.1 Terraform Validate
 
 Run `terraform validate` to check your configuration. If there are any errors, fix them before proceeding.
 
 ![Pictrue of `terraform validate` results](./assets/terraform_validate.png) 
 
 
-### Terraform Plan
+### 9.2 Terraform Plan
 
 Run `terraform plan` to generate a plan. If Terraform reports any errors, fix them before proceeding.
 
 ![Pictrue of `terraform plan` results](./assets/terraform_plan.png) 
 
 
-### Terraform Apply
+### 9.3 Terraform Apply
 
 Run `terraform apply` to excecute the deployment process. When prompted, type `yes` to confirm deployment. If Terraform reports any errors, fix them before proceeding.
 
 ![Pictrue of `terraform apply` results](./assets/terraform_apply.png) 
 
 
-## Confirm Successful Deployment
+## 10. Confirm Successful Deployment
 
-### Confirm `Apply complete!` and `Outputs:`
+### 10.1 Confirm Success Message and Outputs
 
 If successful, Terraform should return a deployment success message with outputs.
 
 ![Terraform success message](./assets/terraform_success.png) 
 
 
-### Confirm Creation of the VPC Resource in GCP Console
+### 10.2 Confirm Creation of the VPC Resource in the GCP Console
 
 ![Picture of VPC resource in GCP console](./assets/vpc_in_gcp_console.png) 
 
 
-### Confirm Creation of `rendered` Directory and `favorite-food.txt` File
+### 10.3 Confirm Creation of the `rendered` Directory
 
 Run the following commands to confirm that the  `rendered` directory was created:
 
@@ -279,6 +301,8 @@ Confirm the `rendered` directory was created.
 
 If the directory doesn't exist, double check your current path and review the `filename` argument for the `"local_file.favorite_food"` resource in  `02-local-files.tf`. Fix any issues before proceeding.
 
+### 10.4 Confirm Creation of the `favorite-food.txt` File
+
 Naviagate to the `rendered` directory and confirm that a file named `favorite-food.txt` was created.
 
 ```bash
@@ -290,7 +314,7 @@ ls
 
 If the file doesn't exist, double check your current path and review the `filename` argument for the `"local_file.favorite_food"` resource in  `02-local-files.tf`.
 
-### Confirm Contents of the `favorite-food.txt` File
+### 10.5 Confirm Contents of the `favorite-food.txt` File
 
 Run the following commands to confirm that the contents of the `favorite-food.txt` file are correct.
 
@@ -300,7 +324,8 @@ Show contents of the `favorite-food.txt` file.
 cat rendered/favorite-food.txt
 ```
 
-Compare the results to the value of the `content` argument in the `local_file.favorite_food` resource in  `02-local-files.tf`.
+### 10.6 Compare the Contents of `favorite-food.text` with `02-local-files.tf`
+Compare the results of the `cat` command to the value of the `content` argument in the `local_file.favorite_food` resource in  `02-local-files.tf`.
 
 If successful, the contents of `favorite-food.txt` will match the value of `content`
 
@@ -308,9 +333,9 @@ If successful, the contents of `favorite-food.txt` will match the value of `cont
 
 ---
 
-## Lab Cleanup
+## 11. Lab Cleanup
 
-### Destroy the Deployment
+### 11.1 Destroy the Deployment
 
 Run `terraform destroy` to remove all resources created by this lab. When prompted, type `yes` to confirm destruction.
 
