@@ -1,3 +1,7 @@
+# ================================================================
+# NETWORKING — NAT
+# ================================================================
+
 # ----------------------------------------------------------------
 # NAT
 # ----------------------------------------------------------------
@@ -17,11 +21,18 @@ resource "google_compute_router_nat" "nat" {
 
   nat_ips = [google_compute_address.nat.self_link]
 
-  # Dependency is implicit in the "router"" argument (references google_compute_router.router.name)
+  # Dependency is implicit in the "router" argument (references google_compute_router.router.name)
   # depends_on = [
   #   google_compute_router.router
   # ]
 }
+
+# ----------------------------------------------------------------
+# NAT - External IP Address
+# ----------------------------------------------------------------
+# Documentation - External IP Address
+# https://docs.cloud.google.com/vpc/docs/reserve-static-external-ip-address
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_address
 
 resource "google_compute_address" "nat" {
   name         = "nat"

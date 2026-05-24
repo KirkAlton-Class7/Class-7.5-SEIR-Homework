@@ -1,6 +1,13 @@
+# ================================================================
+# TERRAFORM PROVIDERS
+# ================================================================
+
 # ----------------------------------------------------------------
-# Terraform Configuration
+# Terraform Providers - Google
 # ----------------------------------------------------------------
+# Documentation - Google Provider
+# https://registry.terraform.io/providers/hashicorp/google/latest
+
 terraform {
   required_providers {
     google = {
@@ -10,6 +17,7 @@ terraform {
   }
 }
 
+# Configuration
 provider "google" {
   project = "kirk-devsecops-sandbox"
   region  = "us-central1"

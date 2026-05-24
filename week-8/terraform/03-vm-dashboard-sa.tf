@@ -1,9 +1,9 @@
-# ----------------------------------------------------------------
+# ================================================================
 # SERVICE ACCOUNTS
-# ----------------------------------------------------------------
+# ================================================================
 
 # ----------------------------------------------------------------
-# SERVICE ACCOUNT - VM DASHBOARD
+# Service Account - VM Dashboard
 # ----------------------------------------------------------------
 resource "google_service_account" "vm_dashboard" {
   project      = "kirk-devsecops-sandbox"
@@ -23,7 +23,7 @@ resource "google_service_account" "vm_dashboard" {
 # ----------------------------------------------------------------
 
 # ----------------------------------------------------------------
-# IAM ROLE - BIGQUERY DATA VIEWER
+# IAM Role - BigQuery Data Viewer
 # ----------------------------------------------------------------
 # Allows the VM dashboard to read billing export tables.
 # Required for actual cost data.
@@ -37,7 +37,7 @@ resource "google_project_iam_member" "vm_dashboard_bigquery_data_viewer" {
 }
 
 # ----------------------------------------------------------------
-# IAM ROLE - BIGQUERY JOB USER
+# IAM ROle - BigQuery Job User
 # ----------------------------------------------------------------
 # Allows the VM dashboard to run BigQuery jobs.
 # Required to query billing export data.
@@ -51,7 +51,7 @@ resource "google_project_iam_member" "vm_dashboard_bigquery_job_user" {
 }
 
 # ----------------------------------------------------------------
-# IAM ROLE - MONITORING VIEWER
+# IAM Role - Monitoring Viewer
 # ----------------------------------------------------------------
 # Allows the VM dashboard to read Cloud Monitoring metrics.
 # Required for utilization data like CPU, memory, and resource metrics.
@@ -65,7 +65,7 @@ resource "google_project_iam_member" "vm_dashboard_monitoring_viewer" {
 }
 
 # ----------------------------------------------------------------
-# IAM ROLE - RECOMMENDER VIEWER
+# IAM Role - Recommender Viewer
 # ----------------------------------------------------------------
 # Allows the VM dashboard to read recommender insights.
 # Required for rightsizing and savings recommendations.
@@ -79,7 +79,7 @@ resource "google_project_iam_member" "vm_dashboard_recommender_viewer" {
 }
 
 # ----------------------------------------------------------------
-# IAM ROLE - BILLING VIEWER
+# IAM Role - Billing Viewer
 # ----------------------------------------------------------------
 # Grants read-only access to the billing account.
 #
