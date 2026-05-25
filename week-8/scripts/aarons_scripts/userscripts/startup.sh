@@ -12,18 +12,75 @@ IP=$(curl -H "$HEADER" "$META/network-interfaces/0/ip")
 dnf install -y httpd
 
 # write our html file to the default location apache2 looks for
+# HTML file updated to show tiled background and iframe with embedded GCS static website
 cat > /var/www/html/index.html << EOF
 <!DOCTYPE html>
 <html>
+
+<head>
+  <title>GCP VM Metadata</title>
+
+  <style>
+
+    body {
+      margin: 0;
+      padding: 2rem;
+
+      /* BACKGROUND IMAGE */
+      background-image: url("https://storage.googleapis.com/kirkdevsecops-website/assets/images/misc/beach-collage.jpg");
+
+      /* TILE THE COLLAGE */
+      background-size: 500px;
+      background-repeat: repeat;
+      background-attachment: fixed;
+
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .panel {
+      background: rgba(0, 0, 0, 0.72);
+      padding: 1.5rem;
+      border-radius: 12px;
+
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    iframe {
+      width: 100%;
+      height: 800px;
+
+      border: 1px solid #ccc;
+      border-radius: 12px;
+
+      background: white;
+    }
+
+    h1, h2 {
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+    }
+
+  </style>
+</head>
+
 <body>
-  <h1>VM Metadata</h1>
-  <h2>Instance Name: $NAME</h2>
-  <h2>Internal IP: $IP</h2>
-  <h2>Colombian prize included for free!</h2>
-  <figure>
-    <img src="https://test-1256099743.s3.us-east-2.amazonaws.com/Colombian/imgi_22_551283556_24677511425231259_7293143846320648055_n.jpg" alt="Colombian prize!" style="max-width:600px; width:100%; display:block; margin:1rem 0;">
-    <figcaption>Colombian prize!</figcaption>
-  </figure>
+
+  <div class="panel">
+
+    <h1>VM Metadata</h1>
+
+    <h2>Instance Name: $NAME</h2>
+    <h2>Internal IP: $IP</h2>
+
+    <h2>Beaches on Beaches!</h2>
+
+    <iframe
+      src="https://storage.googleapis.com/kirkdevsecops-website/index.html">
+    </iframe>
+
+  </div>
+
 </body>
 </html>
 EOF

@@ -3,7 +3,7 @@
 # ================================================================
 
 # ----------------------------------------------------------------
-# Terraform Backend Configuration (GCS)
+# Terraform Backend Configuration - Google (GCS)
 # ----------------------------------------------------------------
 # Documentation - GCS Backend
 # https://www.terraform.io/language/settings/backends/gcs

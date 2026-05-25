@@ -11,7 +11,6 @@
 
 # resource "google_compute_disk" "balanced_app" {
 #   name = "balanced-app-disk"
-#   type = "pd-balanced"
 #   zone = "us-central1-a"
 #   size = 200
 

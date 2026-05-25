@@ -1,28 +1,9 @@
 # ================================================================
 # OUTPUTS
 # ================================================================
-
-# ----------------------------------------------------------------
-# Outputs - VM Dashboard
-# ----------------------------------------------------------------
-output "vm_dashboard_name" {
-  description = "Name of Dashboard VM"
-  value       = google_compute_instance.vm_dashboard.name
-}
-
-output "vm_dashboard_external_ip" {
-  description = "External IP address of Dashboard VM"
-  value       = google_compute_instance.vm_dashboard.network_interface[0].access_config[0].nat_ip
-}
-
-output "vm_dashboard_internal_ip" {
-  description = "Internal IP address of Dashboard VM"
-  value       = google_compute_instance.vm_dashboard.network_interface[0].network_ip
-}
-output "vm_dashboard_ssh_command" {
-  description = "SSH command to connect to Dashboard VM"
-  value       = "gcloud compute ssh ${google_compute_instance.vm_dashboard.name} --zone us-central1-a"
-}
+# The terraform config must include output  for
+# the internal and external IP addresses of the VM
+# the name, id and self_link attributes 
 
 
 # ----------------------------------------------------------------

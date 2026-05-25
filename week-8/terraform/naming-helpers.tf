@@ -1,24 +1,22 @@
 # ================================================================
-# VARIABLES
+# NAMING HELPERS
 # ================================================================
+# Use naming helpers consistently to create unique resource names.
 
 # ----------------------------------------------------------------
-# Input Application Name
+# Random String for Suffixes
 # ----------------------------------------------------------------
 
-variable "app" {
-  type        = string
-  description = "Application name (short)"
-  default     = "week-8" # Update with new application name
+resource "random_string" "suffix" {
+  length  = 5
+  special = false
 }
 
 # ----------------------------------------------------------------
-# Input Environment
+# Random Hex ID for Backend Resource Names
 # ----------------------------------------------------------------
 
-variable "env" {
-  type        = string
-  default     = "dev"
-  description = "Input environment name (dev, test, prod)."
-
+# Random Hex ID for backend resource names
+resource "random_id" "object_storage_suffix" {
+  byte_length = 4
 }

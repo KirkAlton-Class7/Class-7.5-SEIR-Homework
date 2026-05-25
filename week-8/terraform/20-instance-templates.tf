@@ -15,8 +15,31 @@
 
 resource "google_compute_region_instance_template" "public_app" {
   name         = "public-app-instance-template"
-  machine_type = "n4-standard-2"
+  machine_type = "n4d-standard-2"
   description  = "Instance template for public app instances."
+  disk {
+    source_image = "centos-stream-10"
+    disk_type    = "hyperdisk-balanced"
+    disk_size_gb = 100
+    boot         = true
+  }
+
+  network_interface {
+    subnetwork = google_compute_subnetwork.private.id
+
+    # Configure Static External IP Address
+    # Documentation - Extrnal IP Address
+    # https://docs.cloud.google.com/vpc/docs/reserve-static-external-ip-address
+    # https://docs.cloud.google.com/compute/docs/ip-addresses/configure-static-external-ip-address#terraform_1
+    access_config {}
+  }
+
+  service_account {
+    scopes = ["https://www.googleapis.com/auth/compute.readonly"]
+  }
+
+  # Use Aaron's startup script file
+  metadata_startup_script = file("${path.module}/../scripts/aarons_scripts/userscripts/startup.sh")
 
   metadata = {
     homework = "bam-2"
@@ -28,26 +51,4 @@ resource "google_compute_region_instance_template" "public_app" {
     environment = "dev"
   }
 
-  disk {
-    source_image = "centos-stream-10"
-    disk_type    = "pd-balanced"
-    disk_size_gb = 200
-    boot         = true
-  }
-
-  network_interface {
-    subnetwork = google_compute_subnetwork.private.id
-
-    # Configure Static External IP Address
-    # Documentation - Extrnal IP Address
-    # https://docs.cloud.google.com/vpc/docs/reserve-static-external-ip-address
-    # https://docs.cloud.google.com/compute/docs/ip-addresses/configure-static-external-ip-address#terraform_1
-    access_config {
-      nat_ip = google_compute_address.public_app.address
-    }
-  }
-
-  service_account {
-    scopes = ["https://www.googleapis.com/auth/compute.readonly"]
-  }
 }

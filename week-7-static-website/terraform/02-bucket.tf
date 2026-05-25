@@ -52,3 +52,12 @@ resource "google_storage_bucket_object" "beach_images" {
   content_type = "img/png"
   bucket       = google_storage_bucket.static_website.name
 }
+
+# Website Assets - Beach Images
+resource "google_storage_bucket_object" "beach_collage" {
+
+  name         = "assets/images/misc/beach-collage"
+  source       = "../site/assets/images/beaches/misc/beach-collage.jpg"
+  content_type = "img/png"
+  bucket       = google_storage_bucket.static_website.name
+}
