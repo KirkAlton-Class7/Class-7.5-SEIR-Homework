@@ -14,7 +14,7 @@
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance_template
 
 resource "google_compute_region_instance_template" "public_app" {
-  name         = "public-app-instance-template"
+  name         = "${local.name_prefix}-public-app-instance-template"
   machine_type = "n4d-standard-2"
   description  = "Instance template for public app instances."
   disk {

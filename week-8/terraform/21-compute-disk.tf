@@ -10,7 +10,7 @@
 # https://docs.cloud.google.com/compute/docs/disks/persistent-disks
 
 # resource "google_compute_disk" "balanced_app" {
-#   name = "balanced-app-disk"
+#   name = "${local.name_prefix}-balanced-app-disk"
 #   zone = "us-central1-a"
 #   size = 200
 

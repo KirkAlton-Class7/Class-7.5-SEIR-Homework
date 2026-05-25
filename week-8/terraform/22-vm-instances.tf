@@ -11,7 +11,7 @@
 # https://docs.cloud.google.com/compute/docs/disks/persistent-disks
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance
 resource "google_compute_instance" "public_app_vm_a" {
-  name                      = "public-app-vm-instance-a"
+  name                      = "${local.name_prefix}-public-app-vm-instance-a"
   machine_type              = "n4d-standard-2"
   zone                      = "us-central1-a"
   allow_stopping_for_update = true
@@ -67,7 +67,7 @@ resource "google_compute_instance" "public_app_vm_a" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance_from_template
 
 resource "google_compute_instance_from_template" "public_app_vm_b" {
-  name = "public-app-vm-instance-b"
+  name = "${local.name_prefix}-public-app-vm-instance-b"
   zone = "us-central1-a"
 
   source_instance_template = google_compute_region_instance_template.public_app.name

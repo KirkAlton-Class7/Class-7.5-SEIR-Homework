@@ -7,7 +7,7 @@
 # ----------------------------------------------------------------
 
 resource "google_compute_firewall" "public_app_vm" {
-  name    = "public-app-vm"
+  name    = "${local.name_prefix}-public-app-vm"
   network = google_compute_network.main.name
 
   allow {

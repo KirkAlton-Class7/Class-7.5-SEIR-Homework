@@ -10,6 +10,6 @@
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_address
 
 resource "google_compute_address" "public_app" {
-  name   = "public-app-static-ip"
+  name   = "${local.name_prefix}-public-app-static-ip"
   region = "us-central1"
 }
