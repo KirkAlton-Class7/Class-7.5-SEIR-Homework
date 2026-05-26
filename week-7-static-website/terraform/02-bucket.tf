@@ -5,7 +5,7 @@
 # GSC Bucket for Static Website
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket
 resource "google_storage_bucket" "static_website" {
-  name          = "class-7-5-website-demo"
+  name          = lower("${local.name_prefix}-kirkdevsecops")
   location      = "US"
   force_destroy = true
 
@@ -57,7 +57,7 @@ resource "google_storage_bucket_object" "beach_images" {
 resource "google_storage_bucket_object" "beach_collage" {
 
   name         = "assets/images/misc/beach-collage"
-  source       = "../site/assets/images/beaches/misc/beach-collage.jpg"
+  source       = "../site/assets/images/misc/beach-collage.jpg"
   content_type = "img/png"
   bucket       = google_storage_bucket.static_website.name
 }

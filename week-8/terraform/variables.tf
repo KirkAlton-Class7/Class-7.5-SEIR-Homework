@@ -9,7 +9,7 @@
 variable "app" {
   type        = string
   description = "Application name (short)"
-  default     = "week-8" # Update with new application name
+  default     = "c7-5-week-8"
 }
 
 # ----------------------------------------------------------------

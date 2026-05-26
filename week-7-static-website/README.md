@@ -2,7 +2,7 @@
 
 [Link to the original repo](https://github.com/KirkAlton-Class7/week-7-static-website)
 
-[Link to my basic static website](https://storage.googleapis.com/class-7-5-website-demo/index.html)
+[Link to my basic static website](https://storage.googleapis.com/c7-website-dev-kirkdevsecops/index.html)
 
 [Upgraded version](https://storage.googleapis.com/kirkdevsecops-website/index.html)
 
